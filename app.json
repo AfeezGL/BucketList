@@ -1,0 +1,12 @@
+{
+  "name": "Bucket_List",
+  "displayName": "Bucket_List",
+  "expo": {
+    "name": "Bucket_List",
+    "slug": "Bucket_List",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
