@@ -1,12 +1,22 @@
 {
-  "name": "Bucket_List",
-  "displayName": "Bucket_List",
+  "name": "Bucket List",
+  "displayName": "Bucket List",
   "expo": {
-    "name": "Bucket_List",
-    "slug": "Bucket_List",
+    "name": "Bucket List",
+    "icon": "./icon.png",
+    "slug": "bucket_list",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.gcodes.bucketlist",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.gcodes.bucketlist",
+      "versionCode": 1
+    }
   }
 }

@@ -1,21 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {useEffect} from 'react'
+import {v4 as uuidv4} from 'uuid'
+import { StyleSheet, View, AsyncStorage} from 'react-native';
+import {NativeRouter, Switch, Route, BackButton} from 'react-router-native'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 
 export default function App() {
+  const baseUrl = "https://todoprj.herokuapp.com"
+
+  useEffect(() => {
+    //set uuid if uuid does not exist in AsyncStorage
+    const handleUuid = async () => {
+      const onDeviceUuid = await AsyncStorage.getItem("uuid")
+      if (onDeviceUuid === null || onDeviceUuid === undefined ) {
+        const presaveUuid = uuidv4()
+        await AsyncStorage.setItem("uuid", presaveUuid)
+      }
+    }
+    handleUuid()    
+  }, [])
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeRouter>
+      <View style={styles.container}>
+        <BackButton />
+        <View>
+          <Switch>
+            <Route path="/" exact render={() => (<Tasks baseUrl={baseUrl}/>)}/>
+            <Route path="/add" render={() => (<AddTask baseUrl={baseUrl}/>)}/>
+          </Switch>
+        </View>
+      </View>
+    </NativeRouter>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    paddingTop: 30,
+    backgroundColor: "#E3E9F0",
+    fontFamily: "Montserrat, sans-serif",
+    position: "relative",
+    lineHeight: 27
+  }
 });
